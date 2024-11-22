@@ -22,4 +22,4 @@ jobs:
     - name: Run steen_papier_schaar script
       env:
         USER_CHOICE: "schaar"
-      run: python steen_papier_schaar.py
+      run: python steenpapierschaar.py
