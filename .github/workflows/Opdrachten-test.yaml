@@ -14,26 +14,32 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.12'
 
       - name: Run Python files
         run: |
-          # Find all Python files in the repository
+          # Vind alle Python-bestanden in de repository
           for file in $(find . -name '*.py'); do
             if [ -f "$file" ]; then
               echo "Running $file"
-              # Provide default inputs for scripts that require input
+              # Voorzie invoer voor specifieke scripts
               case "$file" in
                 *"Opdracht-1.py")
                   echo "Thomas" | python "$file"
                   ;;
                 *"Opdracht-4.py")
                   echo -e "python123" | python "$file"
+                  ;;
+                *"steenpapierschaar.py")
+                  # Test steen-papier-schaar script met alle keuzes en afsluiten met 'nee'
+                  echo -e "steen\nnee" | python "$file"
+                  echo -e "papier\nnee" | python "$file"
+                  echo -e "schaar\nnee" | python "$file"
                   ;;
                 *)
                   python "$file"
